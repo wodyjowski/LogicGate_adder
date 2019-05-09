@@ -8,8 +8,8 @@ namespace Brameczki
 {
     class Circuit
     {
-        public int Input1 { get; set; }
-        public int Input2 { get; set; }
+        public ulong Input1 { get; set; }
+        public ulong Input2 { get; set; }
 
 
         private List<Adder> AdderList = new List<Adder>();
@@ -22,7 +22,7 @@ namespace Brameczki
             }
         }
 
-        public int Sum()
+        public ulong Sum()
         {
             for (int i = 0; i < AdderList.Count; i++)
             {
@@ -30,7 +30,7 @@ namespace Brameczki
                 AdderList[i].Input2 = ((Input2 >> i) & 1) == 1;
             }
 
-            int result = 0;
+            ulong result = 0;
 
             for (int i = 0; i < AdderList.Count; i++)
             {
@@ -39,7 +39,7 @@ namespace Brameczki
                     AdderList[i].Transfer = AdderList[i - 1].TransferOut;
                 }
 
-                result += (AdderList[i].Add() ? 1 : 0) << i;
+                result += (AdderList[i].Add() ? 1ul : 0ul) << i;
             }
 
             return result;
