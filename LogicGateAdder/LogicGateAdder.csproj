@@ -7,8 +7,8 @@
     <ProjectGuid>{6DD3B46A-298D-4B0A-A941-1355238AE0F4}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Brameczki</RootNamespace>
-    <AssemblyName>Brameczki</AssemblyName>
+    <RootNamespace>LogicGateAdder</RootNamespace>
+    <AssemblyName>LogicGateAdder</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

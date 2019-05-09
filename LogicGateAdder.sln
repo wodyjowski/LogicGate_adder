@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brameczki", "Brameczki\Brameczki.csproj", "{6DD3B46A-298D-4B0A-A941-1355238AE0F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicGateAdder", "LogicGateAdder\LogicGateAdder.csproj", "{6DD3B46A-298D-4B0A-A941-1355238AE0F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E04BF79E-D889-4972-AE56-FEAE8A7576C7}
 	EndGlobalSection
 EndGlobal

@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Brameczki
+namespace LogicGateAdder
 {
     class Program
     {
@@ -44,13 +44,13 @@ namespace Brameczki
             Console.WriteLine("Input is limited by ReadLine() method - max 254 characters.");
             Console.WriteLine($"Number of adders/gates is assigned based on input.{Environment.NewLine}");
 
-            WriteLineColor("First digit: ", ConsoleColor.Green);
+            WriteLineColor("First number: ", ConsoleColor.Green);
 
             input = Console.ReadLine();
             correctInput = BigInteger.TryParse(input, out in1);
             correctInput &= regex.IsMatch(input);
 
-            WriteLineColor("Second digit: ", ConsoleColor.Green);
+            WriteLineColor("Second number: ", ConsoleColor.Green);
 
             input = Console.ReadLine();
             correctInput = BigInteger.TryParse(input, out in2);
