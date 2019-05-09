@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Brameczki
 {
     class Program
     {
+        private static Regex regex = new Regex(@"^\d+");
+
+
         static void Main(string[] args)
         {
             //Forcing JIT methods compilation to ensure proper execution times
@@ -31,25 +36,37 @@ namespace Brameczki
 
         private static void ShowMenu()
         {
-            ulong in1, in2;
+            BigInteger in1, in2;
             bool correctInput = true;
+            string input;
 
-            Console.WriteLine("-----Adding two digits by logic gates simulation-----");
+            WriteLineColor("-----Adding two digits by logic gates simulation-----", ConsoleColor.Cyan);
+            Console.WriteLine("Input is limited by ReadLine() method - max 254 characters.");
+            Console.WriteLine($"Number of adders/gates is assigned based on input.{Environment.NewLine}");
 
-            Console.Write("First digit: ");
-            correctInput = ulong.TryParse(Console.ReadLine(), out in1);
+            WriteLineColor("First digit: ", ConsoleColor.Green);
 
-            Console.Write("Second digit: ");
-            correctInput = ulong.TryParse(Console.ReadLine(), out in2);
+            input = Console.ReadLine();
+            correctInput = BigInteger.TryParse(input, out in1);
+            correctInput &= regex.IsMatch(input);
+
+            WriteLineColor("Second digit: ", ConsoleColor.Green);
+
+            input = Console.ReadLine();
+            correctInput = BigInteger.TryParse(input, out in2);
+            correctInput &= regex.IsMatch(input);
 
             if (!correctInput)
             {
-                Console.WriteLine("Incorrect input.");
-                Console.WriteLine($"{Environment.NewLine} Prss to continue...");
+                WriteLineColor("Incorrect input.", ConsoleColor.Red);
+                Console.WriteLine($"{Environment.NewLine}Press to continue...");
+                Console.ReadKey();
                 return;
             }
 
-            var cr = new Circuit(sizeof(ulong) * 8);
+            int size = GetCircuitSize(in1, in2);
+
+            var cr = new Circuit(size);
 
             cr.Input1 = in1;
             cr.Input2 = in2;
@@ -58,10 +75,42 @@ namespace Brameczki
             var result = cr.Sum();
             sWatch.Stop();
 
-            Console.WriteLine($"{in1} + {in2} = {result}");
+            WriteLineColor($"Result:", ConsoleColor.Green);
+            Console.WriteLine(result);
             Console.WriteLine($"{Environment.NewLine}Execution time: {sWatch.Elapsed.TotalMilliseconds}ms");
-            Console.WriteLine("Prss to continue...");
+
+            WriteColor("Adders used: ", ConsoleColor.DarkMagenta);
+            Console.WriteLine(size);
+            WriteColor("Logic Gates used: ", ConsoleColor.DarkMagenta);
+            Console.WriteLine(size * 5);
+
+            Console.WriteLine("Press to continue...");
             Console.ReadKey();
         }
+
+
+        private static int GetCircuitSize(BigInteger bi1, BigInteger bi2)
+        {
+            int result = Math.Max(bi1.ToBinaryString().Length, bi2.ToBinaryString().Length);
+
+            return result;
+        }
+
+        private static void WriteColor(string text, ConsoleColor color)
+        {
+            var recentColor = Console.ForegroundColor;
+            Console.ForegroundColor = color;
+            Console.Write(text);
+            Console.ForegroundColor = recentColor;
+        }
+
+        private static void WriteLineColor(string text, ConsoleColor color)
+        {
+            var recentColor = Console.ForegroundColor;
+            Console.ForegroundColor = color;
+            Console.WriteLine(text);
+            Console.ForegroundColor = recentColor;
+        }
+
     }
 }
