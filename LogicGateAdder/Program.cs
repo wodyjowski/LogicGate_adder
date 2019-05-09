@@ -40,7 +40,7 @@ namespace LogicGateAdder
             bool correctInput = true;
             string input;
 
-            WriteLineColor("-----Adding two digits by logic gates simulation-----", ConsoleColor.Cyan);
+            WriteLineColor("-----Adding two numbers by logic gates simulation-----", ConsoleColor.Cyan);
             Console.WriteLine("Input is limited by ReadLine() method - max 254 characters.");
             Console.WriteLine($"Number of adders/gates is assigned based on input.{Environment.NewLine}");
 
